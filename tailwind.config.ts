@@ -1,3 +1,4 @@
+// tailwind.config.js
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,11 +10,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#0a0e14",
+        font: "#b3b1ad",
+        title: "#c2d94c",
+        anchor: "#39bae6",
+        td:"#626A73",
+        border: "#B3B1AD",
+        hoverTable: '#101C2E',
+        hoverContentTable:'#c2d94c'
+      },
+      fontSize: {
+        base: "14px",
+        "h1-size": "32px",
+      },
+      padding: {
+        "body-top": "4rem",
+        "body-right": "3rem",
+        "body-bottom": "3rem",
+        "body-left": "3rem",
       },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-background pt-body-top pr-body-right pb-body-bottom pl-body-left;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  h1 {
+    @apply text-h1-size font-bold text-title;
+  }
+  p {
+    @apply text-base text-font;
+  }
+  a {
+    @apply text-anchor;
+  }
+  td {
+    @apply text-td text-base;
+    font-weight: 300;
+  }
+  th {
+    @apply text-base text-font;
+    font-weight: 400;
+  }
+  tr:hover td {
+    @apply text-hoverContentTable;
+  }
 }
 
 @layer utilities {
