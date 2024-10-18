@@ -29,8 +29,6 @@ export type dataAPIAmericano = {
   estado: string;
   salario: number; 
 };
-
-
 export const dataBrasil:dataAPIBrasil[] = [
   { number: "135", name: "Lucas Silva", phone: "+34 612345678", profession: "Engenheiro", weight: 70, height: 175, status: "PAGO" },
   { number: "190", name: "Ana Costa", phone: "+34 698765432", profession: "Professora", weight: 60, height: 160, status: "AGUARDANDO" },
@@ -67,3 +65,9 @@ export const dataAmericana: dataAPIAmericano[] = [
   { id: 9, titulo: "DevOps Engineer", descricao: "Automação de processos de desenvolvimento.", ativo: true, dataCriacao: "2023-09-18", cidade: "Atlanta", estado: "GA", salario: 95000 },
   { id: 10, titulo: "Teste de Qualidade", descricao: "Testes de software e garantia de qualidade.", ativo: true, dataCriacao: "2023-10-05", cidade: "Miami", estado: "FL", salario: 70000 },
 ];
+
+export const dataFetch = {
+  US:dataAmericana,
+  BR:dataBrasil,
+  AR:dataArgentina
+}

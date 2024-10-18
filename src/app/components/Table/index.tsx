@@ -1,13 +1,11 @@
 import { TableProps } from "./types";
 
-
-export default function Table<T extends Record<string, unknown>>({ columns, data }: TableProps<T>) {
-
+export default function Table<RowType>({ strategies, data }: TableProps<RowType>) {
   return (
     <table>
       <thead>
         <tr>
-          {columns.map((col) => (
+          {strategies.columns.map((col) => (
             <th key={col.key} className="px-4 py-2 border border-dashed border-border">
               {col.label}
             </th>
@@ -15,9 +13,9 @@ export default function Table<T extends Record<string, unknown>>({ columns, data
         </tr>
       </thead>
       <tbody>
-        {data.map((row, item) => (
-          <tr key={item} className="hover:bg-hoverTable">
-            {columns.map((col) => (
+        {data.map((row, index) => (
+          <tr key={index} className="hover:bg-hoverTable">
+            {strategies.columns.map((col) => (
               col.render(row)
             ))}
           </tr>

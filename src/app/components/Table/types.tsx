@@ -1,17 +1,16 @@
-// Definindo RowData como um objeto com chaves e valores dinâmicos
-export interface RowData<T extends Record<string, unknown>> {
-  [key: string]: T[keyof T]; // permite que a interface seja flexível para qualquer chave
-}
+// types.tsx
 
-// Definindo a interface Column com um tipo genérico T
-export interface Column<T extends Record<string, unknown>> {
-  key: string | number; // 'key' deve ser um tipo string ou number
+export type Column<RowType> = {
+  key: string | number;
   label: string;
-  render: (row: T) => JSX.Element;
+  render: (row: RowType) => JSX.Element;
+};
+
+export interface StrategyType<RowType> {
+  columns: Column<RowType>[];
 }
 
-// Definindo a interface TableProps com o tipo genérico T
-export interface TableProps<T extends Record<string, unknown>> {
-  columns: Column<T>[];  // Mantendo a tipagem genérica
-  data: T[];             // Utilizando o tipo genérico T
+export interface TableProps<RowType> {
+  strategies: StrategyType<RowType>;
+  data: RowType[]; 
 }
