@@ -1,16 +1,43 @@
-// types.tsx
+export type CountryCode = 'US' | 'AR' | 'BR'
 
-export type Column<RowType> = {
-  key: string | number;
-  label: string;
-  render: (row: RowType) => JSX.Element;
-};
-
-export interface StrategyType<RowType> {
-  columns: Column<RowType>[];
+export type DataAPIBrasil = {
+  number: string
+  name: string
+  phone: string
+  profession: string
+  weight: number
+  height: number
+  status: string
 }
 
-export interface TableProps<RowType> {
-  strategies: StrategyType<RowType>;
-  data: RowType[]; 
+export type DataAPIArgentina = {
+  number: string
+  name: string
+  phone: string
+  profession: string
+  weight: number
+  height: number
+  status: string
+  cidade: string
+  estado: string
+  salario: number
+}
+
+export type DataAPIAmericano = {
+  id: number
+  titulo: string
+  descricao: string
+  ativo: boolean
+  dataCriacao: string
+  cidade: string
+  estado: string
+  salario: number
+}
+
+export type DataAPI = DataAPIBrasil | DataAPIArgentina | DataAPIAmericano
+
+export type DataAPIMap = {
+  BR: DataAPIBrasil
+  AR: DataAPIArgentina
+  US: DataAPIAmericano
 }
