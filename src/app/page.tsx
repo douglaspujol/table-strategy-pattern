@@ -1,17 +1,16 @@
 'use client'
-import React from 'react'
-import Table from './components/Table'
-import { CountryCode, DataAPIMap } from './components/Table/types'
-import { dataFetch } from './mocks'
-import { tableStrategies } from './strategies'
+import React from 'react';
+import {  CountryCode } from './types';
+import { Table } from './components/Table';
 
 export default function Home() {
-  const [selectedCountry, setSelectedCountry] =
-    React.useState<CountryCode>('AR')
+  const [selectedCountry, setSelectedCountry] = React.useState<CountryCode>('BR');
 
   const handleChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCountry(event.target.value as CountryCode)
-  }
+    setSelectedCountry(event.target.value as CountryCode);
+  };
+
+
 
   return (
     <>
@@ -20,13 +19,12 @@ export default function Home() {
         <option value="US">United States</option>
         <option value="AR">Argentina</option>
         <option value="BR">Brazil</option>
+        <option value="KR">South Korea</option>
+        <option value="ES">Spain</option>
       </select>
-      <Table<DataAPIMap[typeof selectedCountry]>
-        strategies={tableStrategies[selectedCountry]}
-        data={
-          dataFetch[selectedCountry] as DataAPIMap[typeof selectedCountry][]
-        }
-      />
+
+      <Table
+       />
     </>
-  )
+  );
 }
