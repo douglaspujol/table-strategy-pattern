@@ -47,7 +47,7 @@ export default function Home() {
       <h1>## Table</h1>
       <p className="max-w-[55rem] mb-6">
         In this project, I implemented a dynamic 
-        table using the <a href='https://www.google.com' target='_blank'>[Strategy Pattern]</a> for a more 
+        table using the <a href='https://dev.to/douglaspujol/como-criar-componentes-globais-e-dinamicos-com-strategy-pattern-em-react-5960' target='_blank'>[Strategy Pattern]</a> for a more 
         modular and extensible approach. 
         Utilizing this pattern allows the rendering 
         logic to be decoupled, making it easier to switch 
