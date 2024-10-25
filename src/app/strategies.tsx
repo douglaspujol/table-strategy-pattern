@@ -1,5 +1,18 @@
-
 import { BrazilData, SpainData, SouthKoreaData, AmericanData } from './types';
+
+type TableColumn<T> = {
+  key: string;
+  label: string;
+  render: (row: T) => JSX.Element;
+};
+
+type BrazilColumn = TableColumn<BrazilData>;
+
+type SouthKoreaColumn = TableColumn<SouthKoreaData>;
+
+type AmericanColumn = TableColumn<AmericanData>;
+
+type SpainColumn = TableColumn<SpainData>;
 
 export const tableStrategies = {
   BR: {
@@ -53,7 +66,7 @@ export const tableStrategies = {
           <td key={`${row.number}-status`} className="px-4 py-2 border border-dashed border-border">{row.status}</td>
         ),
       },
-    ],
+    ] as BrazilColumn[],
   },
   KR: {
     columns: [
@@ -99,7 +112,7 @@ export const tableStrategies = {
           <td key={`${row.name}-hitSong`} className="px-4 py-2 border border-dashed border-border">{row.hitSong}</td>
         ),
       },
-    ],
+    ] as SouthKoreaColumn[],
   },
   US: {
     columns: [
@@ -152,7 +165,7 @@ export const tableStrategies = {
           <td key={`${row.politicalIdeology}-ideology`} className="px-4 py-2 border border-dashed border-border">{row.politicalIdeology}</td>
         ),
       },
-    ],
+    ] as AmericanColumn[],
   },
   ES: {
     columns: [
@@ -184,6 +197,6 @@ export const tableStrategies = {
           <td key={`${row.team}-team`} className="px-4 py-2 border border-dashed border-border">{row.team}</td>
         ),
       },
-    ],
+    ] as SpainColumn[],
   },
 };

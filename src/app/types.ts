@@ -1,4 +1,3 @@
-// types.ts
 export interface BrazilData {
   number: string;
   name: string;
@@ -30,12 +29,9 @@ export interface AmericanData {
   name: string;
   stateOfOrigin: string;
   positionHeld: string;
-  yearAssumedOffice: number;
+  yearAssumedOffice: number | string;
   age: number;
   politicalIdeology: string;
 }
-
-// Combine todos os tipos de dados
-export type CountryData = BrazilData | SpainData | SouthKoreaData | AmericanData;
 
 export type CountryCode = 'US' | 'BR' | 'KR' | 'ES';

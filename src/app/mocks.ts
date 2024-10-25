@@ -1,5 +1,6 @@
+import { BrazilData, SpainData, SouthKoreaData, AmericanData } from './types';
 
-export const brazilData = [
+export const brazilData: BrazilData[] = [
   {
     number: '135',
     name: 'Lucas Silva',
@@ -92,7 +93,7 @@ export const brazilData = [
   },
 ];
 
-export const spainData = [
+export const spainData: SpainData[] = [
   {
     shirtNumber: '7',
     name: 'Fernando Torres',
@@ -155,7 +156,7 @@ export const spainData = [
   },
 ];
 
-export const southKoreaData = [
+export const southKoreaData: SouthKoreaData[] = [
   {
     name: 'BTS',
     memberCount: 7,
@@ -254,7 +255,7 @@ export const southKoreaData = [
   },
 ];
 
-export const americanData = [
+export const americanData: AmericanData[] = [
   {
       party: "Democratic",
       name: "Joe Biden",
