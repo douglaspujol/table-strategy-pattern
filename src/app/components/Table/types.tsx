@@ -1,43 +1,13 @@
-export type CountryCode = 'US' | 'AR' | 'BR'
 
-export type DataAPIBrasil = {
-  number: string
-  name: string
-  phone: string
-  profession: string
-  weight: number
-  height: number
-  status: string
+export interface Column<T> {
+  key: string;
+  label: string;
+  render: (row: T) => JSX.Element;
 }
 
-export type DataAPIArgentina = {
-  number: string
-  name: string
-  phone: string
-  profession: string
-  weight: number
-  height: number
-  status: string
-  cidade: string
-  estado: string
-  salario: number
-}
-
-export type DataAPIAmericano = {
-  id: number
-  titulo: string
-  descricao: string
-  ativo: boolean
-  dataCriacao: string
-  cidade: string
-  estado: string
-  salario: number
-}
-
-export type DataAPI = DataAPIBrasil | DataAPIArgentina | DataAPIAmericano
-
-export type DataAPIMap = {
-  BR: DataAPIBrasil
-  AR: DataAPIArgentina
-  US: DataAPIAmericano
+export interface TableProps<T = unknown>  {
+  data?: T[];
+  strategy?: {
+    columns: Column<T>[];
+  } | unknown ; 
 }
