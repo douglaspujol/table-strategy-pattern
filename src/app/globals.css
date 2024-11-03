@@ -27,7 +27,10 @@
     @apply text-hoverContentTable;
   }
 }
-
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
