@@ -37,6 +37,6 @@ export interface AmericanData {
 export type CountryCode = 'US' | 'BR' | 'KR' | 'ES';
 export interface Country {
   label: string;
-  value: string;
+  value: CountryCode;
   lengthData: number
 }

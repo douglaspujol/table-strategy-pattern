@@ -1,4 +1,10 @@
-import { BrazilData, SpainData, SouthKoreaData, AmericanData } from './types';
+import { 
+  BrazilData, 
+  SpainData, 
+  SouthKoreaData, 
+  AmericanData, 
+  Country 
+} from './types';
 
 export const brazilData: BrazilData[] = [
   {
@@ -384,3 +390,16 @@ export const americanData: AmericanData[] = [
   }
 ];
 
+export const countriesTab: Country[] = [
+  { label: 'Brazil', value: 'BR', lengthData: brazilData.length },
+  { label: 'United States', value: 'US', lengthData: americanData.length  },
+  { label: 'South Korea', value: 'KR', lengthData: southKoreaData.length },
+  { label: 'Spain', value: 'ES', lengthData: spainData.length },
+];
+
+export const textCountriesTab = {
+  'BR': 'A tabela contém informações sobre cidadãos brasileiros, incluindo nome, profissão, peso, altura e status de pagamento. Esses dados ajudam a entender o perfil demográfico e profissional da população.',
+  'ES': 'La tabla incluye datos sobre jugadores de fútbol españoles, destacando su número de camiseta, nombre, nacionalidad y equipo. Estos datos son útiles para analizar la trayectoria y el rendimiento de los jugadores en sus respectivos clubes.',
+  'KR': '이 표에는 K-Pop 그룹의 정보가 포함되어 있으며, 그룹 이름, 멤버 수, 데뷔 연도, 장르 및 히트 송이 나열되어 있습니다. 이 데이터는 K-Pop의 인기와 그룹의 영향력을 이해하는 데 도움을 줍니다.',
+  'US': 'The table provides information about American political figures, including their party affiliation, name, state of origin, position held, and political ideology. This data helps to analyze the political landscape and the diversity of leadership in the U.S.'
+};
