@@ -18,58 +18,66 @@ export const tableStrategies = {
   BR: {
     columns: [
       {
-        key: 'number',
-        label: 'Número',
+        key: 'id',
+        label: 'ID',
         render: (row: BrazilData): JSX.Element => (
           <td key={`${row.number}-br`} className="px-4 py-2 border border-dashed border-border">{row.number}</td>
+        ),
+      },
+      {
+        key: 'phone',
+        label: 'Celular',
+        render: (row: BrazilData): JSX.Element => (
+          <td key={`${row.phone}-br`} className="px-4 py-2 border border-dashed border-border">{row.phone}</td>
         ),
       },
       {
         key: 'name',
         label: 'Nome',
         render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-name`} className="px-4 py-2 border border-dashed border-border">{row.name}</td>
+          <td key={`${row.name}-name`} className="px-4 py-2 border border-dashed border-border">{row.name}</td>
         ),
       },
-      {
-        key: 'phone',
-        label: 'Telefone',
-        render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-phone`} className="px-4 py-2 border border-dashed border-border">{row.phone}</td>
-        ),
-      },
+      
       {
         key: 'profession',
         label: 'Profissão',
         render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-profession`} className="px-4 py-2 border border-dashed border-border">{row.profession}</td>
+          <td key={`${row.profession}-profession`} className="px-4 py-2 border border-dashed border-border">{row.profession}</td>
         ),
       },
       {
         key: 'weight',
         label: 'Peso (kg)',
         render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-weight`} className="px-4 py-2 border border-dashed border-border">{row.weight}</td>
+          <td key={`${row.weight}-weight`} className="px-4 py-2 border border-dashed border-border">{row.weight}</td>
         ),
       },
       {
         key: 'height',
         label: 'Altura (cm)',
         render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-height`} className="px-4 py-2 border border-dashed border-border">{row.height}</td>
+          <td key={`${row.height}-height`} className="px-4 py-2 border border-dashed border-border">{row.height}</td>
         ),
       },
       {
         key: 'status',
         label: 'Status',
         render: (row: BrazilData): JSX.Element => (
-          <td key={`${row.number}-status`} className="px-4 py-2 border border-dashed border-border">{row.status}</td>
+          <td key={`${row.status}-status`} className="px-4 py-2 border border-dashed border-border">{row.status}</td>
         ),
       },
     ] as BrazilColumn[],
   },
   KR: {
     columns: [
+      {
+        key: 'id',
+        label: 'ID',
+        render: (row: SouthKoreaData): JSX.Element => (
+          <td key={`${row.number}-kr`} className="px-4 py-2 border border-dashed border-border">{row.number}</td>
+        ),
+      },
       {
         key: 'name',
         label: '이름',
@@ -116,6 +124,13 @@ export const tableStrategies = {
   },
   US: {
     columns: [
+      {
+        key: 'id',
+        label: 'ID',
+        render: (row: AmericanData): JSX.Element => (
+          <td key={`${row.number}-us`} className="px-4 py-2 border border-dashed border-border">{row.number}</td>
+        ),
+      },
       {
         key: 'party',
         label: 'Party',
@@ -170,10 +185,10 @@ export const tableStrategies = {
   ES: {
     columns: [
       {
-        key: 'shirtNumber',
-        label: 'Número de Camiseta',
+        key: 'id',
+        label: 'ID',
         render: (row: SpainData): JSX.Element => (
-          <td key={`${row.shirtNumber}-es`} className="px-4 py-2 border border-dashed border-border">{row.shirtNumber}</td>
+          <td key={`${row.number + 2}-es`} className="px-4 py-2 border border-dashed border-border">{row.number}</td>
         ),
       },
       {
@@ -195,6 +210,13 @@ export const tableStrategies = {
         label: 'Equipo',
         render: (row: SpainData): JSX.Element => (
           <td key={`${row.team}-team`} className="px-4 py-2 border border-dashed border-border">{row.team}</td>
+        ),
+      },
+      {
+        key: 'shirtNumber',
+        label: 'Número de Camiseta',
+        render: (row: SpainData): JSX.Element => (
+          <td key={`${row.shirtNumber}-es`} className="px-4 py-2 border border-dashed border-border">{row.shirtNumber}</td>
         ),
       },
     ] as SpainColumn[],

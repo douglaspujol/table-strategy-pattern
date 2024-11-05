@@ -1,19 +1,22 @@
 'use client'
 import React from 'react';
-import {  CountryCode, Country } from './types';
+import {  CountryCode, Country, DataItem } from './types';
 import  Table  from './components/Table';
 import { americanData, brazilData, southKoreaData, spainData, countriesTab, textCountriesTab } from './mocks';
 import { tableStrategies } from './strategies';
 
-
 export default function Home() {
 
   const [strategy, setStrategy] = React.useState<unknown>(tableStrategies['BR']); 
-  const [data, setData] = React.useState<unknown[]>(brazilData)
+  const [data, setData] = React.useState<DataItem[]>(brazilData)
+  const [dataFiltered, setDataFiltered] = React.useState<DataItem[]>([]);
   const [activeTab, setActiveTab] = React.useState('Brazil');
   const [textTab, setTextTab] = React.useState<CountryCode>('BR');
+  const [term, setTerm] = React.useState('');
+  const [sortOrder, setSortOrder] = React.useState<string>('');
+  const [selectedRows, setSelectedRows] = React.useState<unknown[]>([]);
 
-  const updateDataAndStrategy =React.useCallback((country: CountryCode) => {
+  const updateDataAndStrategy = React.useCallback((country: CountryCode) => {
     switch (country) {
       case 'BR':
         setData(brazilData);
@@ -34,8 +37,12 @@ export default function Home() {
       default:
         setData([]); 
         setStrategy({});
+        setSelectedRows([]);
         break;
     }
+    setTerm('');
+    setSelectedRows([]);
+    setSortOrder('');
   }, []);
   
   const handleTabChange = ({label, value} : Country) => {
@@ -43,6 +50,45 @@ export default function Home() {
     updateDataAndStrategy(value);
     setTextTab(value)
   };
+
+  const handleSearch = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value;
+    setTerm(search);
+  }, []);
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(e.target.value);
+  };
+
+  const sanitizeInput = (value: string) => {
+    return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, '');
+  };
+  
+  React.useEffect(() => {
+    let updatedData = [...data];
+
+    if (term.length > 0) {
+      const sanitizedInput = sanitizeInput(term);
+      const isNumber = !isNaN(Number(sanitizedInput));
+      
+      updatedData = updatedData.filter((item) => {
+        if (isNumber) {
+          return item.number.includes(sanitizedInput);
+        } else {
+          return item.name.toLowerCase().includes(sanitizedInput.toLowerCase());
+        }
+      });
+    }
+
+    if (sortOrder === '0') {
+      updatedData.sort((a, b) => parseFloat(a.number) - parseFloat(b.number)); 
+    } else if (sortOrder === '1') {
+      updatedData.sort((a, b) => parseFloat(b.number) - parseFloat(a.number));
+    }
+    
+
+    setDataFiltered(updatedData);
+  }, [term, data, sortOrder]);
 
   return (
     <>
@@ -81,6 +127,8 @@ export default function Home() {
             type="search" 
             className="w-72  text-font text-base bg-transparent focus:outline-none" 
             placeholder="Enter name or number to search"
+            onChange={handleSearch}
+            value={term}
           />
           <div>
             <svg 
@@ -102,17 +150,28 @@ export default function Home() {
         </div>
         <select 
           className="mb-6 bg-transparent border hover:border-hoverContentTable border-border border-dashed  px-2 py-2 text-font text-base focus:outline-none"
+          onChange={handleSortChange} 
+          value={sortOrder}
           >
-          <option defaultValue={''}>Sort By Creation Date</option>
-          <option value="0">Oldest</option>
-          <option value="1">Newest</option>
+          <option value="">Sort By Id</option>
+          <option value="0">Ascending</option>
+          <option value="1">Descending</option>
         </select>
+          { selectedRows.length > 0 && 
+            <div className='mb-6 bg-transparent border  border-border border-dashed px-2 py-2 '>
+              <p className='text-title'>
+                {`You selected ${selectedRows.length} item${selectedRows.length !== 1 ? 's' : ''}`}
+              </p>
+            </div>
+          }
       </div>
 
 
       <Table
         strategy={strategy}
-        data={data}
+        data={dataFiltered}
+        selectedRows={selectedRows}
+        setSelectedRows={setSelectedRows}
        />
     </>
   );

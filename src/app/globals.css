@@ -26,6 +26,12 @@
   tr:hover td {
     @apply text-hoverContentTable;
   }
+  tr[data-checked="true"] td {
+    @apply text-hoverContentTable;
+  }
+  tr[data-checked="true"] {
+    @apply bg-hoverTable;
+  }
 }
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
