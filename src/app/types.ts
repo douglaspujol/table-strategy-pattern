@@ -9,13 +9,18 @@ export interface BrazilData {
 }
 
 export interface SpainData {
+  number: string;
   shirtNumber: string;
   name: string;
   nationality: string;
   team: string;
 }
-
+export interface DataItem {
+  number: string;
+  name: string;
+}
 export interface SouthKoreaData {
+  number: string;
   name: string;
   memberCount: number;
   debutYear: number;
@@ -25,6 +30,7 @@ export interface SouthKoreaData {
 }
 
 export interface AmericanData {
+  number: string;
   party: string;
   name: string;
   stateOfOrigin: string;
@@ -35,3 +41,8 @@ export interface AmericanData {
 }
 
 export type CountryCode = 'US' | 'BR' | 'KR' | 'ES';
+export interface Country {
+  label: string;
+  value: CountryCode;
+  lengthData: number
+}
