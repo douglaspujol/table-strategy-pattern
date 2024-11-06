@@ -2,8 +2,7 @@
 import React from 'react';
 import { Column, TableProps } from './types';
 
-const Table =<T,>({ data, strategy, selectedRows, setSelectedRows }: TableProps<T> & { selectedRows?: T[], setSelectedRows?: React.Dispatch<React.SetStateAction<T[]>> }) => {
-  
+const Table = <T,>({ data, strategy, selectedRows = [], setSelectedRows }: TableProps<T> & { selectedRows?: T[]; setSelectedRows?: React.Dispatch<React.SetStateAction<T[]>> }) => {
   const defaultStrategy = { columns: [] as Column<T>[] };
   const currentStrategy = strategy ? (strategy as { columns: Column<T>[] }) : defaultStrategy;
 
@@ -30,6 +29,9 @@ const Table =<T,>({ data, strategy, selectedRows, setSelectedRows }: TableProps<
       });
     }
   };
+  const handleRowClick = (row: T) => {
+    handleSelectRow(row);
+  };
 
   return (
     <table>
@@ -55,11 +57,11 @@ const Table =<T,>({ data, strategy, selectedRows, setSelectedRows }: TableProps<
           <tr key={index}
             data-checked={selectedRows?.includes(row)}
             className="hover:bg-hoverTable  cursor-pointer"
-            onClick={() => handleSelectRow(row)}
+            onClick={() => handleRowClick(row)}
           >
             {setSelectedRows && (
               <td className="border px-4 py-2 border-dashed border-border ">
-                  <input readOnly type="checkbox" checked={selectedRows?.includes(row)}  />
+                  <input readOnly type="checkbox" checked={selectedRows?.includes(row) || false}  />
               </td>
             )}
             {currentStrategy?.columns?.map((col) => col.render(row))}

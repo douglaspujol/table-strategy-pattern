@@ -9,7 +9,6 @@ export default function Home() {
 
   const [strategy, setStrategy] = React.useState<unknown>(tableStrategies['BR']); 
   const [data, setData] = React.useState<DataItem[]>(brazilData)
-  const [dataFiltered, setDataFiltered] = React.useState<DataItem[]>([]);
   const [activeTab, setActiveTab] = React.useState('Brazil');
   const [textTab, setTextTab] = React.useState<CountryCode>('BR');
   const [term, setTerm] = React.useState('');
@@ -64,13 +63,12 @@ export default function Home() {
     return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, '');
   };
   
-  React.useEffect(() => {
+  const filteredAndSortedData = React.useMemo(() => {
     let updatedData = [...data];
-
+  
     if (term.length > 0) {
       const sanitizedInput = sanitizeInput(term);
       const isNumber = !isNaN(Number(sanitizedInput));
-      
       updatedData = updatedData.filter((item) => {
         if (isNumber) {
           return item.number.includes(sanitizedInput);
@@ -79,17 +77,15 @@ export default function Home() {
         }
       });
     }
-
+  
     if (sortOrder === '0') {
-      updatedData.sort((a, b) => parseFloat(a.number) - parseFloat(b.number)); 
+      updatedData.sort((a, b) => parseFloat(a.number) - parseFloat(b.number));
     } else if (sortOrder === '1') {
       updatedData.sort((a, b) => parseFloat(b.number) - parseFloat(a.number));
     }
-    
-
-    setDataFiltered(updatedData);
+  
+    return updatedData;
   }, [term, data, sortOrder]);
-
   return (
     <>
       <div className='border-b max-w-[55rem] border-border border-dashed'>
@@ -169,7 +165,7 @@ export default function Home() {
 
       <Table
         strategy={strategy}
-        data={dataFiltered}
+        data={filteredAndSortedData}
         selectedRows={selectedRows}
         setSelectedRows={setSelectedRows}
        />
