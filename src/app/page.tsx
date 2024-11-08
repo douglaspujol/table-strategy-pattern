@@ -16,6 +16,9 @@ export default function Home() {
   const [selectedRows, setSelectedRows] = React.useState<unknown[]>([]);
 
   const updateDataAndStrategy = React.useCallback((country: CountryCode) => {
+    setTerm('');
+    setSelectedRows([]);
+    setSortOrder('');
     switch (country) {
       case 'BR':
         setData(brazilData);
@@ -39,9 +42,6 @@ export default function Home() {
         setSelectedRows([]);
         break;
     }
-    setTerm('');
-    setSelectedRows([]);
-    setSortOrder('');
   }, []);
   
   const handleTabChange = ({label, value} : Country) => {
