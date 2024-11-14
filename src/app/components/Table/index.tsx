@@ -34,7 +34,7 @@ const Table = <T,>({ data, strategy, selectedRows = [], setSelectedRows }: Table
   };
 
   return (
-    <table>
+    <table className='m-auto  min-w-[55rem]'>
       <thead>
         <tr>
           {setSelectedRows && (
